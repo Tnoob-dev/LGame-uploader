@@ -22,7 +22,9 @@ def main():
                 add_game(api)
                 
     except Exception as e:
-        rprint(f"\n[bold dark_red]Algo ocurrio[/bold dark_red] -> {e}")
+        rprint(f"\n[bold dark_red]Algo ocurrio[/bold dark_red] -> {e}\n")
+        rprint("[bold yellow]Presione cualquier tecla para salir[/bold yellow]")
+        input()
 
 if __name__ == "__main__":
     main()
