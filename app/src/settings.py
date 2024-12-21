@@ -11,7 +11,7 @@ def check_settings_folder():
 
 def create_settings():
     path = Path("./settings")
-    if check_settings_folder() is True:
+    if check_settings_folder():
         os.mkdir(path)
         ip = input("Introduzca la IP: ")
 
