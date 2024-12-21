@@ -16,6 +16,6 @@ class APICall:
             return False
     
     def add_games(self, json: dict):
-        response = self.session.post(str(self.url + "games/add_game"), headers=self.header, json=json)
+        response = self.session.post(str(self.url + "games/add_game/"), headers=self.header, json=json)
         
-        return response.status_code
+        return response

@@ -1,30 +1,16 @@
-from src.APICalls import APICall
-from src.game import add_game
-from src.settings import create_settings
-from rich import print as rprint
-import json
-
-create_settings()
+from src.contexts_def import online_main, offline_main
+from src.question import ask_on_off
 
 def main():
-    rprint("[bold cyan]Conectando con la IP...[/bold cyan]")
-    file = open("./settings/settings.json", "r", encoding="utf-8")
-    
-    api = APICall(ip=json.load(file)["IP"])
-
-    try:
-        
-        if api.is_alive():
-            rprint("La [bold magenta]API[/bold magenta] esta [bold green]activa[/bold green]")
-            rprint("[bold red]Para salir en cualquier momento de la APP, presione Ctrl+C o simplemente termine el proceso[/bold red]")
-
-            while True:
-                add_game(api)
-                
-    except Exception as e:
-        rprint(f"\n[bold dark_red]Algo ocurrio[/bold dark_red] -> {e}\n")
-        rprint("[bold yellow]Presione cualquier tecla para salir[/bold yellow]")
-        input()
+    option = int(input("Seleccione un numero\n1.Online\n2.Offline\n\n"))
+    if ask_on_off(option):
+        online_main()
+    result = ask_on_off(option)
+    if result is None:
+        print("Seleccion invalida, seleccione al una opcion de las que se le ofrece")
+        return
+    if result is True:
+        offline_main()
 
 if __name__ == "__main__":
     main()
